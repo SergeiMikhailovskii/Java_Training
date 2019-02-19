@@ -11,32 +11,33 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        int rVneshn, rVnutr;
+        int rExternal, rInternal;
         double squareOfRing;
-        final double pi = 3.14;
+        final double PI = 3.14;
         while (true) {
-            rVneshn = enterRadius("external");
-            rVnutr = enterRadius("internal");
-            if (rVneshn>rVnutr){
+            rExternal = enterRadius("external");
+            rInternal = enterRadius("internal");
+            if (rExternal>rInternal){
                 break;
             }
             else {
-                System.out.println("R vnesh should be more than R vnutr");
+                System.out.println("R external should be more than R internal");
             }
         }
-        squareOfRing = pi*(rVneshn*rVneshn-rVnutr*rVnutr);
+        squareOfRing = PI*(rExternal*rExternal-rInternal*rInternal);
         System.out.println("Square of the ring: "+squareOfRing);
     }
 
     private static int enterRadius(String parameter){
         Scanner scanner = new Scanner(System.in);
-        int r;
-        while (true){
+        int r = 0;
+        boolean isInputCorrect = false;
+        do{
             System.out.println("Enter radius of "+parameter+" circle");
             if (scanner.hasNextInt()){
                 r = scanner.nextInt();
                 if (r>0){
-                    return r;
+                    isInputCorrect = true;
                 }
                 else{
                     System.out.println("Radius should be more than 0");
@@ -46,7 +47,8 @@ public class Main {
                 System.out.println("Wrong input");
                 scanner.nextLine();
             }
-        }
+        }while (!isInputCorrect);
+        return r;
     }
 
 }
