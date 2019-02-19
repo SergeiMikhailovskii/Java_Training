@@ -20,19 +20,21 @@ public class Main {
     }
 
     private static int enterNumber(){
-        int number;
+        int number = 0;
+        boolean isInputCorrect = false;
         Scanner scanner = new Scanner(System.in);
-        while (true){
+        do {
             System.out.println("Enter the number:");
             if (scanner.hasNextInt()){
                 number = scanner.nextInt();
-                return number;
+                isInputCorrect = true;
             }
             else {
                 System.out.println("Wrong input");
                 scanner.nextLine();
             }
-        }
+        }while (!isInputCorrect);
+        return number;
     }
 
 }
