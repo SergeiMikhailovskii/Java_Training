@@ -16,16 +16,17 @@ public class Main {
     }
 
     private static int enterNumber(){
-        int number;
-        final int minRange = 100000;
-        final int maxRange = 999999;
+        int number = 0;
+        final int MIN_RANGE = 100000;
+        final int MAX_RANGE = 999999;
+        boolean isInputCorrect = false;
         Scanner scanner = new Scanner(System.in);
-        while (true){
+        do {
             System.out.println("Enter 6 digit number");
             if (scanner.hasNextInt()){
                 number = scanner.nextInt();
-                if (number>minRange&& number<maxRange){
-                    return number;
+                if (number> MIN_RANGE && number<MAX_RANGE){
+                    isInputCorrect = true;
                 }
                 else {
                     System.out.println("Number should be 6 digit");
@@ -35,7 +36,8 @@ public class Main {
                 System.out.println("Wrong input!");
                 scanner.nextLine();
             }
-        }
+        }while (!isInputCorrect);
+        return number;
     }
 
     private static int[] numberToIntArray(int number){
@@ -50,16 +52,16 @@ public class Main {
     }
 
     private static void countAverages(int[] numArray){
-        double avArifm, avGeom;
+        double avArithm, avGeom;
         int sum = 0, mult = 1;
         for (int aNumArray : numArray) {
             sum += aNumArray;
             mult *= aNumArray;
         }
-        avArifm = (double) sum/numArray.length;
+        avArithm = (double) sum/numArray.length;
         avGeom = (double) Math.pow(mult, 1.0/numArray.length);
-        System.out.println("Average arifm: "+avArifm);
-        System.out.println("Average geom: "+avGeom);
+        System.out.println("Average arithmetic: "+avArithm);
+        System.out.println("Average geometric: "+avGeom);
     }
 
 }
