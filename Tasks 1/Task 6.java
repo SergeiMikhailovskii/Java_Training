@@ -20,16 +20,17 @@ public class Main {
     }
 
     private static int enterTheNumber(){
-        int number;
+        int number = 0;
         int minRange = 1000000;
         int maxRange = 9999999;
+        boolean isInputCorrect = false;
         Scanner scanner = new Scanner(System.in);
-        while (true){
+        do {
             System.out.println("Enter 7 digit number");
             if (scanner.hasNextInt()){
                 number = scanner.nextInt();
                 if (number>=minRange&&number<=maxRange){
-                    return number;
+                    isInputCorrect = true;
                 }
                 else {
                     System.out.println("Number should be 7 digit");
@@ -39,7 +40,8 @@ public class Main {
                 System.out.println("Wrong input!");
                 scanner.nextLine();
             }
-        }
+        }while (!isInputCorrect);
+        return number;
     }
 
     private static int[] convertNumberToIntArray(int number){
