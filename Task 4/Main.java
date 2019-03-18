@@ -8,6 +8,7 @@ import com.company.Candies.Sweet;
 import com.company.Comparators.ManufacturerComparator;
 import com.company.Comparators.WeightComparator;
 import com.company.Gift.Gift;
+import org.apache.log4j.Logger;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -16,12 +17,11 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Main {
-
+    private static Logger logger = Logger.getLogger(Main.class);
 
 
     public static void main(String[] args) {
         Gift gift = new Gift();
-
         BufferedReader bufferedReader;
         boolean isWorkFinished = false;
 
@@ -32,11 +32,17 @@ public class Main {
 
             String buffer;
             String[] bufArray;
+            int i = 0;
             while ((buffer = bufferedReader.readLine()) != null){
                 bufArray = buffer.split(" ");
                 if (isFileDataCorrect(bufArray[0], bufArray.length)) {
                     createCandy(bufArray, gift);
+                    logger.info("Candy created from line "+i);
                 }
+                else {
+                    logger.info("Candy can't be created from line "+i);
+                }
+                i++;
             }
 
             do {
@@ -135,9 +141,11 @@ public class Main {
             if (scanner.hasNextInt()){
                 choice = scanner.nextInt();
                 isInputCorrect = true;
+                logger.info("User entered value: "+choice);
             }
             else {
                 scanner.nextLine();
+                logger.info("User entered wrong value");
             }
         }while (!isInputCorrect);
         return choice;
